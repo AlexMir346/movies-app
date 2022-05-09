@@ -19,6 +19,7 @@ body {
 header {
   background-color: #373b69;
   display: flex;
+  flex-wrap: wrap;
   padding: 1rem;
   justify-content: space-between;
 }
@@ -73,6 +74,7 @@ header {
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
+  white-space: nowrap;
   will-change: box-shadow, transform;
   font-size: 18px;
 }
@@ -163,4 +165,13 @@ header {
 }
 .tag.red {
   color: rgb(248, 4, 4);
+}
+
+@media only screen and (max-width: 450px) {
+  header {
+    justify-content: center;
+  }
+  .button {
+    margin-bottom: 10px;
+  }
 }

@@ -42,7 +42,7 @@ function App(button) {
   return (
     <Router>
       <header>
-        <Link className="button" to="https://alexmir346.github.io/movies-app/" onClick={button}>
+        <Link className="button" to="/" onClick={button}>
           Home Page
         </Link>
         <form onSubmit={handleOnSubmit}>

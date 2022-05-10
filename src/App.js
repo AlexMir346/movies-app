@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Link } from 'react-router-dom';
 
 import Movie from './components/Movie';
 
@@ -8,7 +7,7 @@ const FEATURED_API =
 const SEARCH_API =
   'https://api.themoviedb.org/3/search/movie?&api_key=04c35731a5ee918f014970082a0088b1&query=';
 
-function App(button) {
+function App() {
   const [movies, setMovies] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
 
@@ -40,11 +39,13 @@ function App(button) {
   };
 
   return (
-    <Router>
+    <>
       <header>
-        <Link className="button" to="/" onClick={button}>
+    <form>
+        <button className="button" action="button">
           Home Page
-        </Link>
+        </button>
+    </form>
         <form onSubmit={handleOnSubmit}>
           <input
             className="search"
@@ -60,7 +61,7 @@ function App(button) {
           <Movie key={movie.id} {...movie} />
         ))}
       </div>
-    </Router>
+    </>
   );
 }
 

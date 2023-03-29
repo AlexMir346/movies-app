@@ -11,7 +11,7 @@ function App() {
     <>
       <Header />
       <Routes>
-        <Route exact path="/movies-app" element={<MovieList />} />
+        <Route exact path="/" element={<MovieList />} />
 
         <Route path="/search" element={<SearchList />} />
 

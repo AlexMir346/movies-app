@@ -13,7 +13,7 @@ export default function Header() {
   return (
     <header>
       <div className="btns-group">
-        <Link to="/movies-app/" className="button">
+        <Link to="/" className="button">
           Main Page
         </Link>
         <Link to="/wishList" className="button">

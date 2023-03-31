@@ -1,14 +1,13 @@
 import React from 'react';
-import { Route, Routes, useLocation } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 
 import Header from './components/header/Header';
 import MovieList from './components/movieList/MovieList';
 import WishList from './components/wishMovieList/WishMovieList';
 import SearchList from './components/searchList/SearchList';
+import MoviesDetails from './components/movieDetails/MoviesDetails';
 
 function App() {
-  const location = useLocation();
-  console.log(location.pathname);
   return (
     <>
       <Header />
@@ -18,6 +17,8 @@ function App() {
         <Route path="/search" element={<SearchList />} />
 
         <Route path="/wishList" element={<WishList />} />
+
+        <Route path="/movie-details/:id" element={<MoviesDetails />} />
       </Routes>
     </>
   );

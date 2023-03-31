@@ -32,13 +32,14 @@ export default function WishMovieList() {
     });
   };
 
+  const addMessage =
+    addedMovies.length > 1 || addedMovies.length === 0
+      ? `You have added ${addedMovies.length} movies to your wish list`
+      : `You have added ${addedMovies.length} movie to your wish list`;
+
   return (
     <>
-      <h1 className="movies-quantity">
-        {addedMovies.length > 1 || addedMovies.length === 0
-          ? `You have added ${addedMovies.length} movies to your wish list`
-          : `You have added ${addedMovies.length} movie to your wish list`}
-      </h1>
+      <h1 className="movies-quantity">{addMessage}</h1>
       <div className="movie-container">
         {addedMovies.map((movie, index) => (
           <div
@@ -50,7 +51,12 @@ export default function WishMovieList() {
               <DeleteForeverOutlinedIcon
                 className="deleteIcon"
                 onClick={() => onRemoveMovie(movie.id)}
-                style={{ position: 'absolute', top: 20, right: 20 }}
+                style={{
+                  position: 'absolute',
+                  top: 20,
+                  right: 20,
+                  color: 'rgb(2, 250, 250)',
+                }}
               />
             )}
             <img

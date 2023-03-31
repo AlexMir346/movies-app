@@ -17,7 +17,7 @@ export default function Header() {
           Main Page
         </Link>
         <Link to="/wishList" className="button">
-          Wish list
+          Wishlist
         </Link>
       </div>
       <Input onSubmit={handleOnSubmit} />

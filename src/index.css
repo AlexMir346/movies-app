@@ -26,6 +26,7 @@ header {
 
 .btns-group {
   display: flex;
+  flex-wrap: wrap;
   gap: 20px;
 }
 
@@ -114,6 +115,15 @@ h1 {
 .button:active {
   box-shadow: #212a6e 0 3px 7px inset;
   transform: translateY(2px);
+}
+
+.button:disabled {
+  background-image: radial-gradient(100% 100% at 100% 0, #ccc 0, #ccc 100%);
+  box-shadow: none;
+  color: #999;
+  cursor: default;
+  opacity: 0.6;
+  pointer-events: none;
 }
 
 .movie-container {
@@ -205,5 +215,8 @@ h1 {
   }
   .button {
     margin-bottom: 10px;
+  }
+  .btns-group {
+    justify-content: center;
   }
 }

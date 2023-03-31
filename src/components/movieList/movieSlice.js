@@ -1,10 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-
 import axios from 'axios';
-
-const API_KEY = 'f59753c2d71820541bb691c8a7759421';
-const BASE_API_URL = 'https://api.themoviedb.org/3';
-const SEARCH_API = `${BASE_API_URL}/search/movie?&api_key=${API_KEY}&query=`;
+import { API_KEY, BASE_API_URL, SEARCH_API } from '../../utils/constants';
 
 export const getMovies = createAsyncThunk('movies/getMovies', async (page) => {
   const result = await axios.get(
@@ -52,18 +48,21 @@ export const moviesSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(getMovies.pending, (state) => {
+        state.isLoading = true;
         state.moviesStatus = 'pending';
       })
       .addCase(getMovies.fulfilled, (state, action) => {
-        state.moviesStatus = 'idle';
         state.movies = action.payload;
         state.isLoading = false;
+        state.moviesStatus = 'idle';
       })
       .addCase(getMovies.rejected, (state, action) => {
         state.moviesStatus = 'error';
         state.error = action.error.message;
+        state.isLoading = false;
       })
       .addCase(getSearchMovies.pending, (state) => {
+        state.isLoading = true;
         state.searchStatus = 'pending';
         state.searchedMovies = [];
       })
@@ -75,6 +74,7 @@ export const moviesSlice = createSlice({
       .addCase(getSearchMovies.rejected, (state, action) => {
         state.searchStatus = 'error';
         state.error = action.error.message;
+        state.isLoading = false;
       });
   },
 });

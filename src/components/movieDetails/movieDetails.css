@@ -1,0 +1,62 @@
+.movie-details {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+
+.movie-details__poster {
+  flex: 0 0 300px;
+  margin-right: 20px;
+  margin-bottom: 20px;
+  margin: 20px;
+}
+
+.movie-details__poster img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.movie-details__info {
+  flex: 1;
+  margin: 20px;
+}
+
+.movie-details__title {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.movie-details__release {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.movie-details__revenue,
+.movie-details__runtime,
+.movie-details__genres,
+.movie-details__overview {
+  font-size: 16px;
+}
+.movie_tag {
+  background-color: #404588;
+  border-radius: 5px;
+  font-weight: bold;
+  padding: 0.5rem;
+}
+
+.movie_tag.green {
+  color: rgb(5, 177, 5);
+}
+.movie_tag.orange {
+  color: rgb(232, 153, 6);
+}
+.movie_tag.red {
+  color: rgb(248, 4, 4);
+}
+
+@media only screen and (max-width: 450px) {
+  .movie-details__poster {
+    margin: 20px auto;
+  }
+}

@@ -34,8 +34,8 @@ export default function WishMovieList() {
 
   const addMessage =
     addedMovies.length > 1 || addedMovies.length === 0
-      ? `You have added ${addedMovies.length} movies to your wish list`
-      : `You have added ${addedMovies.length} movie to your wish list`;
+      ? `Added ${addedMovies.length} movies`
+      : `Added ${addedMovies.length} movie`;
 
   return (
     <>

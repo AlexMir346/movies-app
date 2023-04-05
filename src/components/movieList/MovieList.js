@@ -3,38 +3,49 @@ import { useDispatch, useSelector } from 'react-redux';
 import Spinner from '../spinner/Spinner';
 import Movie from '../movie/Movie';
 import Pagination from '../pagination/Pagination';
-import { getMovies } from './movieSlice';
+import { getMovies } from '../movieList/movieSlice';
 
 const MovieList = () => {
-  const [currentPage, setCurrentPage] = useState(1);
-  const moviesItems = useSelector((state) => state.movies.movies);
-  const loading = useSelector((state) => state.movies.isLoading);
-  const totalPages = useSelector((state) => state.movies.totalPages);
+  const { movies, totalPages, isLoading, moviesStatus } = useSelector((state) => state.movies);
   const dispatch = useDispatch();
 
+  const [currentPage, setCurrentPage] = useState(1);
+
+  useEffect(() => {
+    dispatch(getMovies({ page: 1 }));
+  }, [dispatch]);
+
   const goToFirstPage = () => {
-    setCurrentPage(1);
+    if (currentPage > 1) {
+      dispatch(getMovies({ page: 1 }));
+      setCurrentPage(1);
+    }
   };
 
   const goToPrevPage = () => {
     if (currentPage > 1) {
+      dispatch(getMovies({ page: currentPage - 1 }));
       setCurrentPage(currentPage - 1);
     }
   };
 
   const goToNextPage = () => {
-    if (currentPage < totalPages) {
+    if (currentPage < 500) {
+      dispatch(getMovies({ page: currentPage + 1 }));
       setCurrentPage(currentPage + 1);
     }
   };
 
   const goToLastPage = () => {
-    setCurrentPage(totalPages);
+    if (currentPage < 500) {
+      dispatch(getMovies({ page: 500 }));
+      setCurrentPage(500);
+    }
   };
 
-  useEffect(() => {
-    dispatch(getMovies(currentPage));
-  }, [currentPage, dispatch]);
+  if (moviesStatus === 'error') {
+    return <div className="movie-container">There was an error fetching the movies</div>;
+  }
 
   return (
     <>
@@ -47,10 +58,10 @@ const MovieList = () => {
         currentPage={currentPage}
       />
       <div className="movie-container">
-        {loading ? (
+        {isLoading ? (
           <Spinner />
         ) : (
-          moviesItems.map(({ id, poster_path, title, vote_average, overview }) => (
+          movies.map(({ id, poster_path, title, vote_average, overview }) => (
             <Movie
               key={id}
               id={id}

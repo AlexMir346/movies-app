@@ -9,6 +9,8 @@ import { Link } from 'react-router-dom';
 
 import { IMG_URL, DEFAULT_IMG_POSTER } from '../../utils/constants';
 
+import './movie.css';
+
 export default function Movie({ id, poster_path, title, vote_average }) {
   const wishList = useSelector((state) => state.movies.wishList);
   const [isHovered, setIsHovered] = useState(false);

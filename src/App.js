@@ -9,7 +9,7 @@ import MoviesDetails from './components/movieDetails/MoviesDetails';
 
 function App() {
   return (
-    <>
+    <div className="wrapper">
       <Header />
       <Routes>
         <Route exact path="/" element={<MovieList />} />
@@ -20,7 +20,7 @@ function App() {
 
         <Route path="/movie-details/:id" element={<MoviesDetails />} />
       </Routes>
-    </>
+    </div>
   );
 }
 

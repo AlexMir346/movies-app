@@ -91,7 +91,7 @@ export default function MoviesDetails() {
                   </button>
                 )}
                 <Link to="/" className="button">
-                  Back to Main Page
+                  Home page
                 </Link>
               </div>
             </div>

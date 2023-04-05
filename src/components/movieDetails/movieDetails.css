@@ -2,6 +2,7 @@
   display: flex;
   flex-wrap: wrap;
   align-items: flex-start;
+  min-height: 100vh;
 }
 
 .movie-details__poster {

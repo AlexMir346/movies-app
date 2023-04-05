@@ -2,22 +2,32 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { API_KEY, BASE_API_URL, SEARCH_API } from '../../utils/constants';
 
-export const getMovies = createAsyncThunk('movies/getMovies', async (page) => {
+export const getMovies = createAsyncThunk('movies/getMovies', async ({ page }) => {
   const result = await axios.get(
     `${BASE_API_URL}/discover/movie?sort_by=popularity.desc&api_key=${API_KEY}&page=${page}`,
   );
-  return result.data.results;
+  return {
+    results: result.data.results,
+    totalPages: result.data.total_pages,
+  };
 });
 
-export const getSearchMovies = createAsyncThunk('movies/getSearchMovies', async (searchTerm) => {
-  const response = await axios.get(`${SEARCH_API}${searchTerm}`);
-  return response.data.results;
-});
+export const getSearchMovies = createAsyncThunk(
+  'movies/getSearchMovies',
+  async ({ searchText, page }) => {
+    const response = await axios.get(`${SEARCH_API}${searchText}&page=${page}`);
+    return {
+      results: response.data.results,
+      totalPages: response.data.total_pages,
+    };
+  },
+);
 
 const initialState = {
   movies: [],
-  totalPages: 500,
+  totalPages: 0,
   searchedMovies: [],
+  searchedTotalPages: 0,
   wishList: [],
   isWishListUpdated: false,
   isLoading: true,
@@ -52,7 +62,8 @@ export const moviesSlice = createSlice({
         state.moviesStatus = 'pending';
       })
       .addCase(getMovies.fulfilled, (state, action) => {
-        state.movies = action.payload;
+        state.movies = action.payload.results;
+        state.totalPages = Math.min(action.payload.totalPages, 500);
         state.isLoading = false;
         state.moviesStatus = 'idle';
       })
@@ -68,7 +79,8 @@ export const moviesSlice = createSlice({
       })
       .addCase(getSearchMovies.fulfilled, (state, action) => {
         state.searchStatus = 'idle';
-        state.searchedMovies = action.payload;
+        state.searchedMovies = action.payload.results;
+        state.searchedTotalPages = action.payload.totalPages;
         state.isLoading = false;
       })
       .addCase(getSearchMovies.rejected, (state, action) => {

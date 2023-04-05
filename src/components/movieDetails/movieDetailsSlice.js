@@ -9,7 +9,7 @@ export const getMovieById = createAsyncThunk('movies/getMovieById', async (id) =
 
 const initialState = {
   selectedMovie: {},
-  isLoading: true,
+  isLoading: false,
   error: null,
   selectedMovieStatus: 'idle',
 };

@@ -39,7 +39,10 @@ export default function WishMovieList() {
 
   return (
     <>
-      <h1 className="movies-quantity">{addMessage}</h1>
+      <div className="movie-results">
+        <h1 className="movies-quantity_wishlist">{addMessage}</h1>
+      </div>
+
       <div className="movie-container">
         {addedMovies.map((movie, index) => (
           <div

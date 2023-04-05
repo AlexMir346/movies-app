@@ -66,12 +66,14 @@ export default function SearchList() {
         totalPages={searchedTotalPages}
         currentPage={currentPage}
       />
-      <div className="movie-container_search">
+      <div className="movie-results">
+        <h1 className="movies-quantity">{`Results for the movie: ${searchText}`}</h1>
+      </div>
+      <div className="movie-container">
         {isLoading ? (
           <Spinner />
         ) : (
           <>
-            <h1 className="movies-quantity">{`Results for the movie: ${searchText}`}</h1>
             <div className="movie-container">
               {searchedMovies.map(({ id, poster_path, title, vote_average, overview }) => (
                 <Movie

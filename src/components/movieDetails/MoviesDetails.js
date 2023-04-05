@@ -8,8 +8,6 @@ import { addToWishLish } from '../movieList/movieSlice';
 import { IMG_URL, DEFAULT_IMG_POSTER } from '../../utils/constants';
 import { setVoteClass } from '../../utils/setVoteClass';
 
-import './movieDetails.css';
-
 export default function MoviesDetails() {
   const { id } = useParams();
   const dispatch = useDispatch();
